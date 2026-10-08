@@ -1,0 +1,654 @@
+.visually-hidden {
+  @apply sr-only;
+}
+
+/* ==========================================================================
+ Preloader
+ ========================================================================== */
+
+/* Nested inside .hero-section (relative, h-screen) so it covers exactly the hero's own
+   box, not the raw viewport — matches the reference site's structure. */
+.preloader-section {
+    @apply pointer-events-none absolute inset-0 z-60 flex items-center justify-center overflow-hidden bg-white;
+}
+
+.hero-fade-word {
+    @apply inline-block;
+}
+
+/* Figma 218×137 gap centered against 1048×129 logo */
+.preloader-section__track {
+    @apply flex items-end justify-center font-medium leading-none;
+    font-size: clamp(2.5rem, 8.958333vw, 8.0625rem);
+    height: 1em;
+}
+
+.preloader-section__word {
+    @apply relative shrink-0 overflow-hidden;
+    height: 1em;
+}
+
+/* Figma 1048×129 logo-blue.svg — "CÔTE" 406px + "D'AZUR" 581px */
+.preloader-section__word--start {
+    @apply flex justify-end;
+    width: calc(406 / 129 * 1em);
+}
+
+.preloader-section__word--end {
+    @apply flex justify-start;
+    width: calc(581 / 129 * 1em);
+}
+
+.preloader-section__word-img {
+    @apply block h-full w-auto max-w-none;
+}
+
+.preloader-section__word--start .preloader-section__word-img {
+    @apply absolute top-0 left-0;
+}
+
+.preloader-section__word--end .preloader-section__word-img {
+    @apply absolute top-0 right-0;
+}
+
+.preloader-section__box {
+    @apply relative flex shrink-0 flex-col items-center justify-center overflow-hidden;
+    width: 0;
+    height: calc(137 / 129 * 1em);
+    margin: 0 calc(30.5 / 129 * 1em);
+}
+
+.preloader-section__box-inner {
+    @apply relative flex h-full items-center justify-center;
+    min-width: calc(218 / 129 * 1em);
+    height: 100%;
+}
+
+.preloader-section__growing {
+    @apply absolute flex h-full w-full items-center justify-center overflow-hidden;
+}
+
+.preloader-section__cover-stack {
+    @apply absolute inset-0 h-full w-full;
+    min-width: calc(218 / 129 * 1em);
+}
+
+.preloader-section__cover-extra,
+.preloader-section__cover-image {
+    @apply absolute inset-0 h-full w-full overflow-hidden bg-cover bg-center bg-no-repeat;
+}
+
+.preloader-section__cover-extra img,
+.preloader-section__cover-image img {
+    @apply block h-full w-full object-cover;
+}
+
+.preloader-section__cover-extra::after,
+.preloader-section__cover-image::after {
+    content: '';
+    @apply pointer-events-none absolute inset-0;
+    /* Matches .hero-section__overlay exactly so the loader-to-hero handoff has zero visible shift. */
+    background-image:
+        linear-gradient(180deg, rgba(0, 0, 0, 0) 8%, rgba(0, 0, 0, 0.8) 100%),
+        linear-gradient(0deg, rgba(0, 0, 0, 0) 71%, rgba(0, 0, 0, 0.4) 100%);
+}
+
+.preloader-section__cover-extra:nth-child(1) {
+    z-index: 4;
+}
+
+.preloader-section__cover-extra:nth-child(2) {
+    z-index: 3;
+}
+
+.preloader-section__cover-extra:nth-child(3) {
+    z-index: 2;
+}
+
+.preloader-section__cover-image {
+    z-index: 1;
+}
+
+/* ===== HERO INTRO (Omniyat-style: scroll → SVG → banner → header) ===== */
+
+.hero-scroll-container {
+  @apply relative h-[200vh];
+}
+
+.hero-pin-wrap {
+  @apply relative flex h-screen w-full flex-col justify-between overflow-hidden;
+}
+
+.hero-intro-overlay {
+  @apply pointer-events-none absolute inset-0 z-15 hidden;
+}
+
+.hero-loader-logo,
+.hero-loader-shape {
+  @apply absolute inset-0 z-20 flex items-center justify-center pointer-events-none;
+}
+
+.hero-loader-logo img {
+  @apply block h-auto w-248 max-768:w-160;
+}
+
+.hero-loader-shape {
+  @apply absolute inset-x-0 bottom-0 z-20 flex h-full items-end justify-center overflow-visible pointer-events-none;
+}
+
+.hero-loader-shape img {
+  @apply block h-[58vh] w-auto max-w-none will-change-transform;
+}
+
+.hero-bg {
+  @apply absolute inset-0 overflow-hidden;
+}
+
+.hero-bg img,
+.hero-bg video {
+  @apply absolute inset-0 w-full h-full object-cover;
+}
+
+.hero-bg-overlay {
+  @apply pointer-events-none absolute inset-0;
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 8%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+.hero-bg-overlay-top {
+  @apply pointer-events-none absolute inset-0;
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0) 71%, rgba(0, 0, 0, 0.4) 100%);
+}
+
+.hero-content {
+  @apply absolute inset-0 z-30 flex flex-col justify-end;
+}
+
+/* ==========================================================================
+   Hero section
+   ========================================================================== */
+
+.hero-section {
+    @apply relative overflow-hidden;
+}
+
+.hero-section__media {
+    @apply relative z-0 w-full h-full overflow-hidden;
+}
+
+.hero-section__media-img {
+    @apply block w-full h-full object-cover;
+}
+.hero-loader-cover--main {
+  @apply z-1;
+}
+
+.hero-section__overlay {
+    @apply pointer-events-none absolute inset-0;
+    background-image:
+        linear-gradient(180deg, rgba(0, 0, 0, 0) 8%, rgba(0, 0, 0, 0.8) 100%),
+        linear-gradient(0deg, rgba(0, 0, 0, 0) 71%, rgba(0, 0, 0, 0.4) 100%);
+}
+
+.hero-section__inner {
+    @apply absolute inset-0 z-30 flex flex-col justify-end;
+}
+
+.hero-section__row {
+    @apply flex flex-row items-end justify-between gap-108 pb-123 max-1199:gap-60 max-1199:pb-70 max-768:flex-col max-768:items-start max-768:gap-30 max-768:pb-40;
+}
+
+.hero-section__copy {
+    @apply flex flex-1 flex-col items-start gap-24;
+}
+
+.hero-section__ctas {
+    @apply flex shrink-0 items-center gap-16 max-768:flex-wrap;
+}
+
+/* ==========================================================================
+   Image-with-content section
+   ========================================================================== */
+
+.image-with-content {
+    @apply flex flex-row items-stretch max-768:flex-col;
+}
+
+.image-with-content__media {
+    @apply relative flex-1 min-w-0 max-768:flex-none max-768:w-full max-768:aspect-proven-media;
+}
+
+.image-with-content__media img {
+    @apply absolute inset-0 block h-full w-full object-cover;
+}
+
+.image-with-content__panel {
+    @apply relative flex-1 min-w-0 overflow-hidden bg-[#0e1f1a] max-768:flex-none max-768:w-full;
+}
+
+.image-with-content__leaves {
+    @apply pointer-events-none absolute inset-0 -scale-x-100 opacity-50 mix-blend-multiply;
+}
+
+.image-with-content__leaves img {
+    @apply block h-full w-full object-cover;
+}
+
+
+.image-with-content__content {
+    @apply relative mx-auto flex max-w-620 flex-col items-center gap-32 px-24 py-75 max-1199:gap-24 max-1199:py-50 max-768:gap-20 max-768:py-40;
+}
+
+.image-with-content__title {
+    @apply text-center;
+}
+
+.image-with-content__accent {
+    @apply relative aspect-proven-accent w-full max-w-266 overflow-hidden rounded-tl-40 rounded-br-40;
+}
+
+.image-with-content__accent img {
+    @apply block h-full w-full object-cover;
+}
+
+.image-with-content__desc {
+    @apply flex w-full flex-col items-center gap-16;
+}
+
+.image-with-content__desc p {
+    @apply text-center text-cream/70;
+}
+
+.image-with-content__ctas {
+    @apply flex flex-wrap items-start justify-center gap-100 max-1199:gap-15 max-768:flex-col max-768:items-center;
+}
+
+
+[data-fade] {
+    @apply opacity-0;
+}
+
+[data-fade].is-visible {
+    @apply opacity-100;
+}
+
+
+/* ===== FIND PROPERTY ===== */
+
+.find-property {
+  @apply relative -top-[45px] max-768:top-[0px] rounded-tl-20 max-992:rounded-tl-none w-[calc(100vw-110px)] max-992:w-full  left-55 right-55 z-40 flex items-stretch shadow-find-property max-1199:left-40 max-1199:right-40 max-1024:left-0 max-1024:right-0 max-1024:flex-col;
+}
+
+.find-property-label {
+  @apply bg-darkbg rounded-tl-20 flex flex-col justify-center items-start px-40 py-24 shrink-0 max-1024:flex-row max-1024:gap-4 max-1024:px-24 max-1024:py-14 max-768:rounded-tl-none;
+}
+
+.find-property-label span {
+  @apply text-cream text-14 font-body tracking-1.4 uppercase leading-snug;
+}
+
+.find-property-filters {
+  @apply bg-white border border-cream flex-1 flex items-center justify-between px-40 py-24 max-1199:px-24 max-992:flex-wrap max-992:gap-16 max-992:px-24;
+}
+
+.find-property-filter {
+  @apply flex flex-col gap-10 w-200 relative max-1199:w-160 max-992:w-[48%] max-576:w-[47%];
+}
+
+.filter-label {
+  @apply text-primary text-14 font-body tracking-1.4 leading-15 uppercase;
+}
+
+.filter-trigger {
+  @apply flex items-center gap-28 cursor-pointer max-768:justify-between;
+}
+
+.filter-value {
+  @apply text-tan text-heading-5 font-body;
+}
+
+.filter-trigger img {
+  @apply block shrink-0;
+  filter: brightness(0) saturate(100%) invert(61%) sepia(10%) saturate(1078%) hue-rotate(355deg) brightness(91%) contrast(80%);
+}
+
+.find-property-divider {
+  @apply self-stretch border-l border-tan/20 max-992:hidden;
+}
+
+.filter-dropdown {
+  @apply absolute bottom-full left-0 bg-white border border-tan/20 z-50 min-w-full hidden mb-2;
+}
+
+.find-property-filter.is-open .filter-dropdown {
+  @apply flex flex-col;
+}
+
+.filter-option {
+  @apply text-primary text-14 font-body px-16 py-10 text-left cursor-pointer hover:bg-primary/10 transition-colors duration-200;
+}
+
+.find-property-search {
+  @apply shrink-0 leading-[1.25] border-tan text-tan hover:bg-tan hover:text-white;
+}
+
+
+/* ==========================================================================
+   Residences slider — full-bleed GSAP ScrollTrigger clip-path reveal
+   (Figma nodes 18:4759, 72:58). Pinned in the viewport while each stacked
+   slide wipes in right-to-left over the last as the user scrolls, in place
+   of a swipeable carousel. Figma reuses one background photo across all
+   three Block cards; distinct existing project photos stand in per block
+   here instead so the wipe is visually legible slide-to-slide.
+   ========================================================================== */
+
+.residences-slider {
+    @apply relative h-screen w-full overflow-hidden rounded-tl-50 rounded-br-50 max-768:h-auto max-768:overflow-visible max-768:rounded-none;
+}
+
+/* Desktop keeps the pinned clip-path wipe (residencesSlider.js). Mobile keeps
+   one stable image in place and swaps only the block card content on tab tap. */
+.residences-slider__track {
+    @apply relative h-full w-full max-768:flex max-768:h-auto max-768:flex-col;
+}
+
+.residences-slide {
+    @apply absolute inset-0 isolate h-full w-full overflow-hidden max-768:sticky max-768:top-0 max-768:inset-auto max-768:h-screen max-768:w-full;
+}
+
+.residences-slider__blocks {
+    @apply max-768:block max-768:overflow-hidden;
+}
+
+.residences-slider__blocks.is-content-fading .residences-slide.is-mobile-active .residences-slide__filter {
+    @apply max-768:opacity-35;
+}
+
+/* One full-width card per screen (photo+tabs, then the stats card below —
+   same photo-then-content split as .testimonial-card) instead of the desktop
+   photo-overlay card. Tabs swap the active block content in place on mobile. */
+.residences-slider__blocks .residences-slide {
+    @apply max-768:hidden max-768:bg-primary;
+}
+
+.residences-slider__blocks .residences-slide.is-mobile-active {
+    @apply max-768:relative max-768:top-auto max-768:inset-auto max-768:flex max-768:h-auto max-768:w-full max-768:flex-col max-768:overflow-visible;
+}
+
+.residences-slider__blocks .residences-slide__media {
+    @apply max-768:relative max-768:aspect-testimonial max-768:h-auto max-768:shrink-0;
+}
+
+.residences-slider__blocks .residences-slide__filter {
+    @apply max-768:static max-768:w-full max-768:transition-opacity max-768:duration-500 max-768:ease-in-out max-768:rounded-none!;
+}
+
+.residences-slide__tabs {
+    @apply hidden max-768:absolute max-768:inset-x-0 max-768:bottom-0 max-768:z-10 max-768:flex max-768:justify-around max-768:gap-8 max-768:px-16 max-768:py-12;
+}
+
+.residences-slide__tab {
+    @apply relative border-0 bg-transparent p-0 pb-8 text-14 font-body text-cream/60 uppercase tracking-1.4 transition-colors duration-300;
+}
+
+.residences-slide__tab::after {
+    content: '';
+    @apply absolute bottom-0 left-0 h-1 w-full origin-left scale-x-0 bg-cream transition-transform duration-300;
+}
+
+.residences-slide__tab.is-active {
+    @apply text-cream;
+}
+
+.residences-slide__tab.is-active::after {
+    @apply scale-x-100;
+}
+
+.residences-slide__media {
+    @apply absolute inset-0 h-full w-full overflow-hidden;
+}
+
+.residences-slide__media picture {
+    @apply block h-full w-full;
+}
+
+.residences-slide__media img {
+    @apply block h-full w-full object-cover;
+}
+
+.residences-slide__overlay {
+    @apply pointer-events-none absolute inset-0 mix-blend-hard-light;
+    background-image: linear-gradient(180deg, rgba(23, 27, 35, 0) 0%, rgba(23, 27, 35, 0.7) 100%);
+}
+
+.residences-slide__content {
+    @apply absolute inset-x-64 bottom-58 z-10 flex flex-row items-end justify-between gap-24 max-1199:inset-x-40 max-1199:bottom-40 max-768:inset-x-20 max-768:bottom-24 max-768:flex-col max-768:items-start max-768:gap-16;
+}
+
+.residences-slide__copy {
+    @apply flex flex-col gap-4;
+}
+
+.residences-slide__tagline p {
+    @apply text-cream/80;
+}
+
+.residences-slide__filter {
+    @apply absolute right-70 bottom-70 max-1199:bottom-40 max-1199:right-40 z-10 flex w-293 flex-col items-start gap-34 rounded-tr-40 rounded-bl-40 bg-darkbg p-24 max-1199:w-240 max-1199:gap-24 max-768:w-200 max-768:gap-20 max-768:p-16;
+}
+
+.residences-slide__filter-block {
+    @apply flex flex-col gap-16;
+}
+
+.residences-slide__filter-caption p {
+    @apply text-cream/50;
+}
+
+.residences-slide__filter-figure p {
+    @apply font-Cinzel text-36 font-normal;
+}
+
+.residences-slide__filter-config p {
+    @apply text-cream max-1199:max-w-200;
+}
+
+.residences-slide__filter-divider {
+    @apply w-full border-t border-cream/20;
+}
+
+.residences-slide__filter-stat {
+    @apply flex flex-col gap-8;
+}
+
+.residences-slide__filter-extra {
+    display: grid;
+    grid-template-rows: 0fr;
+    margin-top: -34px;
+    transition: grid-template-rows 0.4s ease, margin-top 0.4s ease;
+    width: 100%;
+}
+
+.residences-slide__filter-extra > div {
+    overflow: hidden;
+}
+
+.residences-slide__filter:hover .residences-slide__filter-extra,
+.residences-slide__filter:focus-within .residences-slide__filter-extra {
+    grid-template-rows: 1fr;
+    margin-top: 0;
+}
+
+@media (max-width: 1199px) {
+    .residences-slide__filter-extra {
+        margin-top: -24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .residences-slide__filter-extra {
+        grid-template-rows: 1fr;
+        margin-top: 0;
+    }
+}
+
+.residences-slide__filter-extra-inner {
+    @apply flex flex-col gap-16 max-1199:gap-12;
+}
+
+
+/* ===== LOCATION SECTION ===== */
+
+.location-section {
+    @apply py-0;
+  }
+  
+  .location-map {
+    @apply relative h-900 overflow-hidden max-1199:h-700 max-768:h-600 max-425:h-420;
+  }
+  
+  .location-map-bg {
+    @apply absolute inset-0;
+  }
+  
+  .location-map-bg img {
+    @apply w-full h-full object-cover object-center;
+  }
+  
+  /* Route connecting lines — inline SVG overlay */
+  
+  .location-lines-overlay {
+    @apply absolute inset-0 w-full h-full pointer-events-none max-768:hidden;
+  }
+  .location-lines-overlay  path {
+    @apply stroke-tan
+  }
+  
+  /* CÔTE D'AZUR map marker */
+  
+  .location-cda-marker {
+    /* @apply absolute flex items-center gap-8 pointer-events-none left-[27%] 1512:left-[30%] top-[45%] -translate-x-[72%] max-768:hidden; */
+    @apply absolute flex items-center gap-8 pointer-events-none left-[33.2%] top-[43.5%] translate-x-[-82%] max-1366:left-[32%] max-1366:translate-x-[-68%] max-768:left-[30%] max-768:translate-x-[-70%]  max-768:hidden;
+  }
+  
+  .location-cda-text {
+    @apply font-Cinzel font-semibold text-tan tracking-widest text-24 leading-none;
+  }
+  
+  .location-cda-dot {
+    @apply w-10 h-10 rounded-full bg-tan;
+  }
+  
+  /* Location pins — navy circles with icon */
+  
+  .location-pin {
+    @apply absolute w-36 h-36 max-576:w-26 max-576:h-26 rounded-full bg-darkbg flex items-center justify-center cursor-pointer z-10
+           transition-transform duration-200 hover:scale-110 active:scale-95
+           -translate-x-1/2 -translate-y-1/2;
+  }
+  
+  .location-pin img {
+    @apply block shrink-0 w-18 h-18 max-576:w-12 max-576:h-12;
+  }
+  
+  .location-pin-1 {
+    @apply left-pin-1-left top-pin-1-top;
+  }
+  
+  .location-pin-2 {
+    @apply left-pin-2-left top-pin-2-top max-576:left-[20%];
+  }
+  
+  .location-pin-3 {
+    @apply left-pin-3-left top-pin-3-top max-576:left-[16%];
+  }
+  
+  .location-pin-4 {
+    @apply left-pin-4-left top-pin-4-top;
+  }
+  
+  .location-pin-5 {
+    @apply left-pin-5-left top-pin-5-top max-576:left-[20%];
+  }
+  
+  .location-pin-6 {
+    @apply left-pin-6-left top-pin-6-top;
+  }
+  
+  /* Active pin ring */
+  
+  /* .location-pin.is-active {
+    @apply ring-2 ring-primary/40 ring-offset-2;
+  } */
+  
+  /* Bottom-left label */
+  
+  .location-content {
+    @apply absolute bottom-0 left-0 px-64 pb-50 max-1199:px-40 max-1199:pb-40 max-768:px-24 max-768:pb-30 max-425:px-16 max-425:pb-24;
+  }
+  
+  .location-content .title h2 {
+    @apply mb-20 max-992:text-heading-1 max-768:text-[42px] max-992:leading-tight;
+  }
+  
+  .location-content .content p {
+    @apply text-18 leading-snug opacity-80 max-768:text-16 max-576:text-14;
+  }
+  
+  /* Popup card — flex-col: top row + divider + distance row */
+  
+  .location-popup {
+    @apply absolute w-288 bg-white shadow-location-popup flex flex-col
+           opacity-0 pointer-events-none
+           transition-all duration-300 translate-y-4 z-20
+           max-768:w-full max-768:left-0 max-768:right-0 max-768:bottom-0 max-768:top-auto max-768:translate-y-0;
+  }
+  
+  .location-popup.is-open {
+    @apply opacity-100 pointer-events-auto translate-y-0;
+  }
+  
+  /* Popup — top row (thumbnail + destination) */
+  
+  .location-popup-top {
+    @apply flex items-start pt-18 pb-10;
+  }
+  
+  .location-popup-thumb {
+    @apply shrink-0 w-79 h-62 overflow-hidden ml-16;
+  }
+  
+  .location-popup-thumb img {
+    @apply w-full h-full object-cover;
+  }
+  
+  .location-popup-destination {
+    @apply flex flex-col ml-14 gap-12;
+  }
+  
+  /* Popup — full-width divider */
+  
+  .location-popup-divider {
+    @apply block h-px bg-dark-charcoal/20 mx-16;
+  }
+  
+  /* Popup — distance row (below divider) */
+  
+  .location-popup-bottom {
+    @apply flex flex-col px-16 pt-12 pb-16 gap-12;
+  }
+  
+  /* Shared label + value styles */
+  
+  .location-popup-label {
+    @apply text-12 font-body font-normal text-primary tracking-widest uppercase leading-none;
+  }
+  
+  .location-popup-value {
+    @apply text-18 max-768:text-14 font-body font-semibold text-tan leading-tight;
+  }
+  
+  /* content color modifier for popup text */
+  
+  .content-dark-charcoal p {
+    @apply text-dark-charcoal;
+  }
